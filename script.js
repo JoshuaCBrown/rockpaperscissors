@@ -20,44 +20,58 @@ function answerChecker (a) {
     }
 }
 
-function rockf (a, b) {
+function rockf (a) {
     if (a == "rock") {
-        tieGame(a, b);
+        tieGame(computerSelection, playerSelection);
     }
     else if (a == "paper") {
-        youLose(a, b);
+        youLose(computerSelection, playerSelection);
     }
     else {
-        youWin(a,b);
+        youWin(computerSelection, playerSelection);
     }
 }
 
-function paperf (b, a) {
+function paperf (a) {
     if (a == "rock") {
-
+        youWin(computerSelection, playerSelection);
     }
     else if (a == "paper") {
-
+        tieGame(computerSelection, playerSelection);
     }
     else {
-        
+        youLose(computerSelection, playerSelection);
     }
 }
 
-function scissorsf (b, a) {
+function scissorsf (a) {
     if (a == "rock") {
-
+        youLose(computerSelection, playerSelection);
     }
     else if (a == "paper") {
-
+        youWin(computerSelection, playerSelection);
     }
     else {
-        
+        tieGame(computerSelection, playerSelection);
     }
+}
+
+function youWin(a, b) {
+    console.log ("Congratulations! You win because " + b + " beats " + a + "!");
+}
+
+function youLose(a, b) {
+    console.log ("You lost. Unfortunately for you, " + a + " beats " + b + ".");
+}
+
+function tieGame(a, b) {
+    console.log ("It was a tie! Better than losing, but not quite as good as winning, I guess. You both selected " + b + ".");
 }
 
 
 let computerSelection = getComputerChoice();
+
+console.log ("Computer has selected " + computerSelection + ". Good luck!");
 
 let getPlayerSelection = prompt("Choose rock, paper, or scissors.");
 
@@ -65,17 +79,15 @@ let playerSelection = answerChecker(getPlayerSelection.toLowerCase());
 
 switch (playerSelection) {
     case "rock":
-        rockf (computerSelection, playerSelection);
+        rockf (computerSelection);
         break;
     case "paper":
-        paperf (computerSelection, playerSelection);
+        paperf (computerSelection);
         break;
     case "scissors":
-        scissorsf (computerSelection, playerSelection);
+        scissorsf (computerSelection);
         break;
     default:
         prompt("something went wrong, Josh needs to write better code!");
 }
 
-console.log("Computer has selected " + computerSelection);
-console.log("You have selected " + playerSelection);
