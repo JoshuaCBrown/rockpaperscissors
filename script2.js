@@ -61,7 +61,7 @@ function gameBoy () {
     else {
         console.log("You've lost, you losey lose face.");
     }
-    console.log("Final Score:\nYou: " + playerScore + "\nCpu: " + cpuScore);
+    console.log("Final Score:\nYou: " + playerScore + "\nCPU: " + cpuScore);
 }
 
 
