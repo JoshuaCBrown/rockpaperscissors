@@ -28,10 +28,12 @@ function playRound(a, b) {
     ) {
         ++playerScore;
         result = "You win!";
+        pscore.textContent = playerScore;
     }
     else {
         ++cpuScore;
         result = "You lose :(";
+        cscore.textContent = cpuScore;
     }
     console.log(result);
     return result;
@@ -60,14 +62,30 @@ function gameBoy () {
     console.log("Final Score:\nYou: " + playerScore + "\nCPU: " + cpuScore);
 }
 
+let playerScore = 0;
+
+let cpuScore = 0;
+
 const rockbtn = document.querySelector('#rbtn');
 rockbtn.addEventListener('click', () => {
     playRound('rock', getComputerChoice());
 });
 
-let playerScore = 0;
+const paperbtn = document.querySelector('#pbtn');
+paperbtn.addEventListener('click', () => {
+    playRound('paper', getComputerChoice());
+});
 
-let cpuScore = 0;
+const scissorsbtn = document.querySelector('#sbtn');
+scissorsbtn.addEventListener('click', () => {
+    playRound('scissors', getComputerChoice());
+});
+
+const pscore = document.querySelector('#pscore');
+pscore.textContent = playerScore;
+
+const cscore = document.querySelector('#cscore');
+cscore.textContent = cpuScore;
 
 // gameBoy();
 

@@ -1,9 +1,22 @@
 div.row {
     display: flex;
-    margin-left: 300px;
-    margin-right: 300px;
-    justify-content: space-evenly;
+    justify-content: center;
 }
+
+div.column {
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    justify-content: center;
+    margin-top: 50px;
+    text-align: center;
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+
 div.pg {
     height: 300px;
 }
