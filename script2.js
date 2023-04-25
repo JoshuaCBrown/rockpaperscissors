@@ -1,22 +1,17 @@
+
 function getComputerChoice () {
     let a = Math.floor(Math.random()*3);
     if (a == 0) {
+        console.log('cpu chooses rock');
         return "rock";
     }
     else if (a == 1) {
+        console.log('cpu chooses paper');
         return "paper";
     }
     else {
+        console.log('cpu chooses scissors');
         return "scissors";
-    }
-}
-
-function answerChecker (a) {
-    if (a == "rock" || a == "paper" || a == "scissors") {
-        return a;
-    }
-    else {
-        alert("that's not a valid option... google the rules maybe? Idk. Idc. Reload the webpage to start again.")
     }
 }
 
@@ -38,6 +33,7 @@ function playRound(a, b) {
         ++cpuScore;
         result = "You lose :(";
     }
+    console.log(result);
     return result;
 }
  
@@ -64,11 +60,15 @@ function gameBoy () {
     console.log("Final Score:\nYou: " + playerScore + "\nCPU: " + cpuScore);
 }
 
-
+const rockbtn = document.querySelector('#rbtn');
+rockbtn.addEventListener('click', () => {
+    playRound('rock', getComputerChoice());
+});
 
 let playerScore = 0;
 
 let cpuScore = 0;
 
-gameBoy();
+// gameBoy();
+
 
