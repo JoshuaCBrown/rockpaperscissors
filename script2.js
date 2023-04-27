@@ -39,20 +39,26 @@ function playRound(a, b) {
     ++roundNumber;
     roundCount.textContent = roundNumber;
     return result;
-}
- 
+};
+
 
 function gameBoy (myChoice) {
     if (roundNumber <= 5) {
         let computerSelection = getComputerChoice();
-        gameLog.textContent += playRound(myChoice, computerSelection) + " You chose " + myChoice + " and the Computer chose " + computerSelection;
-        if (roundNumber = 4) {
-            gameLog.textContent += (5-roundNumber) + " round left!";
-        } else {
-            gameLog.textContent += (5-roundNumber) + " rounds left!";
-        };
+        gameLog.textContent += playRound(myChoice, computerSelection) + " You chose " + myChoice + " and the Computer chose " + computerSelection + ".";
+        roundsLeft();
     } else {
         gameOver();
+    };
+};
+
+function roundsLeft() {
+    if (roundNumber === 4) {
+        gameLog.textContent += "1 round left!";
+    } else if (roundNumber < 4) {
+        gameLog.textContent += (5-roundCount) + " rounds left!";
+    } else {
+        //do nothing
     };
 };
 
@@ -108,8 +114,7 @@ roundCount.textContent = roundNumber;
 const gameLog = document.querySelector('#gameLog');
 gameLog.textContent = "Round " + roundNumber;
 
-const playButtons = document.querySelectorAll(".btns button");
-playButtons
+const playButtons = document.querySelectorAll(".btn");
 
 // gameBoy();
 
