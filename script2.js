@@ -32,7 +32,7 @@ function playRound(a, b) {
     }
     else {
         ++cpuScore;
-        result = "You lose :(";
+        result = "You lose.";
         cscore.textContent = cpuScore;
     }
     console.log(result);
@@ -42,14 +42,20 @@ function playRound(a, b) {
 
 function gameBoy (myChoice) {
     if (roundNumber < 5) {
-        let computerSelection = getComputerChoice();
-        gameLog.textContent += "Round " + roundNumber + ": " + playRound(myChoice, computerSelection) + "\r\nYou chose " + myChoice + " and the Computer chose " + computerSelection + ".\r\n";
+        scoreKeeper(myChoice);
         ++roundNumber;
         roundCount.textContent = roundNumber;
         roundsLeft();
-    } else {
+    } else if (roundNumber === 5) {
+        scoreKeeper(myChoice);
         gameOver();
     };
+};
+
+function scoreKeeper(myChoice) {
+    let computerSelection = getComputerChoice();
+    gameLog.textContent += "Round " + roundNumber + ": " + playRound(myChoice, computerSelection) + "\r\nYou chose " + myChoice + " and the Computer chose " + computerSelection + ".\r\n";
+    return;
 };
 
 function roundsLeft() {
@@ -63,13 +69,13 @@ function roundsLeft() {
 
 function gameOver() {
     if (playerScore > cpuScore) {
-        gameLog.textContent += "Congratulations, you won the game!";
+        gameLog.textContent += "\r\nCongratulations, you won the game! Wow.";
     }
     else if (cpuScore == playerScore) {
-        gameLog.textContent += "Tie... it's a tie. You didn't lose, but you didn't win. Your performance was exactly mediocre. Congrats I guess?";
+        gameLog.textContent += "\r\nTie... it's a tie. You didn't lose, but you didn't win. Your performance was exactly mediocre. Congrats I guess?";
     }
     else {
-        gameLog.textContent += "You've lost, you losey lose face. A randomized selection beat you. Maybe rethink your strategy?";
+        gameLog.textContent += "\r\nYou've lost, you losey lose face. A randomized selection beat you. Maybe rethink your strategy?";
     }
     disableButtons();
 };
