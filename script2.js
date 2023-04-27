@@ -36,16 +36,16 @@ function playRound(a, b) {
         cscore.textContent = cpuScore;
     }
     console.log(result);
-    ++roundNumber;
-    roundCount.textContent = roundNumber;
     return result;
 };
 
 
 function gameBoy (myChoice) {
-    if (roundNumber <= 5) {
+    if (roundNumber < 5) {
         let computerSelection = getComputerChoice();
-        gameLog.textContent += playRound(myChoice, computerSelection) + " You chose " + myChoice + " and the Computer chose " + computerSelection + ".";
+        gameLog.textContent += "Round " + roundNumber + ": " + playRound(myChoice, computerSelection) + "\r\nYou chose " + myChoice + " and the Computer chose " + computerSelection + ".\r\n";
+        ++roundNumber;
+        roundCount.textContent = roundNumber;
         roundsLeft();
     } else {
         gameOver();
@@ -53,17 +53,15 @@ function gameBoy (myChoice) {
 };
 
 function roundsLeft() {
-    if (roundNumber === 4) {
-        gameLog.textContent += "1 round left!";
-    } else if (roundNumber < 4) {
-        gameLog.textContent += (5-roundCount) + " rounds left!";
+    if (roundNumber === 5) {
+        gameLog.textContent += "Only 1 round left!\r\n\r\n";
     } else {
-        //do nothing
+        gameLog.textContent += (6-roundNumber) + " rounds left!\r\n\r\n";
     };
+
 };
 
 function gameOver() {
-    disableButtons();
     if (playerScore > cpuScore) {
         gameLog.textContent += "Congratulations, you won the game!";
     }
@@ -73,11 +71,13 @@ function gameOver() {
     else {
         gameLog.textContent += "You've lost, you losey lose face. A randomized selection beat you. Maybe rethink your strategy?";
     }
+    disableButtons();
 };
 
 function disableButtons() {
     for (let i = 0; i < playButtons.length; ++i) {
         playButtons[i].disabled = true;
+        playButtons[i].classList.add("disabledCla");
     };
 };
 
@@ -89,12 +89,12 @@ let roundNumber = 1;
 
 const rockbtn = document.querySelector('#rbtn');
 rockbtn.addEventListener('click', () => {
-    playRound('rock', getComputerChoice());
+    gameBoy('rock');
 });
 
 const paperbtn = document.querySelector('#pbtn');
 paperbtn.addEventListener('click', () => {
-    playRound('paper', getComputerChoice());
+    gameBoy('paper');
 });
 
 const scissorsbtn = document.querySelector('#sbtn');
@@ -112,7 +112,6 @@ const roundCount = document.querySelector('#roundCount');
 roundCount.textContent = roundNumber;
 
 const gameLog = document.querySelector('#gameLog');
-gameLog.textContent = "Round " + roundNumber;
 
 const playButtons = document.querySelectorAll(".btn");
 
