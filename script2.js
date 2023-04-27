@@ -19,7 +19,7 @@ function getComputerChoice () {
 function playRound(a, b) {
     let result;
     if (a === b) {
-        result = "It's a tie"
+        result = "It's a tie..."
     }
     else if (
         (a == "rock" && b == "scissors") ||
@@ -36,35 +36,50 @@ function playRound(a, b) {
         cscore.textContent = cpuScore;
     }
     console.log(result);
+    ++roundNumber;
+    roundCount.textContent = roundNumber;
     return result;
 }
  
 
-function gameBoy () {
-    for (let i = 1; i < 6; i++) {
-        let getPlayerSelection = prompt("Round " + i + "! Choose rock, paper, or scissors.");
-        let playerSelection = answerChecker(getPlayerSelection.toLowerCase());
+function gameBoy (myChoice) {
+    if (roundNumber <= 5) {
         let computerSelection = getComputerChoice();
-        console.log("You chose " + playerSelection + " and the Computer chose " + computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("The score is you: " + playerScore + ". CPU: " + cpuScore + ". " + (5-i) + " rounds left.");
-        }    
-    console.log("Game over.")
+        gameLog.textContent += playRound(myChoice, computerSelection) + " You chose " + myChoice + " and the Computer chose " + computerSelection;
+        if (roundNumber = 4) {
+            gameLog.textContent += (5-roundNumber) + " round left!";
+        } else {
+            gameLog.textContent += (5-roundNumber) + " rounds left!";
+        };
+    } else {
+        gameOver();
+    };
+};
+
+function gameOver() {
+    disableButtons();
     if (playerScore > cpuScore) {
-        console.log("Congratulations, you won!");
+        gameLog.textContent += "Congratulations, you won the game!";
     }
     else if (cpuScore == playerScore) {
-        console.log("It's a tie!");
+        gameLog.textContent += "Tie... it's a tie. You didn't lose, but you didn't win. Your performance was exactly mediocre. Congrats I guess?";
     }
     else {
-        console.log("You've lost, you losey lose face.");
+        gameLog.textContent += "You've lost, you losey lose face. A randomized selection beat you. Maybe rethink your strategy?";
     }
-    console.log("Final Score:\nYou: " + playerScore + "\nCPU: " + cpuScore);
-}
+};
+
+function disableButtons() {
+    for (let i = 0; i < playButtons.length; ++i) {
+        playButtons[i].disabled = true;
+    };
+};
 
 let playerScore = 0;
 
 let cpuScore = 0;
+
+let roundNumber = 1;
 
 const rockbtn = document.querySelector('#rbtn');
 rockbtn.addEventListener('click', () => {
@@ -78,7 +93,7 @@ paperbtn.addEventListener('click', () => {
 
 const scissorsbtn = document.querySelector('#sbtn');
 scissorsbtn.addEventListener('click', () => {
-    playRound('scissors', getComputerChoice());
+    gameBoy('scissors');
 });
 
 const pscore = document.querySelector('#pscore');
@@ -86,6 +101,15 @@ pscore.textContent = playerScore;
 
 const cscore = document.querySelector('#cscore');
 cscore.textContent = cpuScore;
+
+const roundCount = document.querySelector('#roundCount');
+roundCount.textContent = roundNumber;
+
+const gameLog = document.querySelector('#gameLog');
+gameLog.textContent = "Round " + roundNumber;
+
+const playButtons = document.querySelectorAll(".btns button");
+playButtons
 
 // gameBoy();
 

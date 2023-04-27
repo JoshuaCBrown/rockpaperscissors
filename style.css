@@ -1,3 +1,15 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
 div.row {
     display: flex;
     justify-content: center;
@@ -9,22 +21,51 @@ div.column {
     min-width: 100px;
     justify-content: center;
     margin-top: 50px;
+    margin-left: 0px;
+    margin-right: 0px;
     text-align: center;
+}
+
+div.pg {
+  height: 300px;
+}
+div.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+div.logStyle {
+  background-color: rgba(176, 176, 248, 0.349);
+  height: 200px;
+  width: 400px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 4px;
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px;
+}
+h2 {
+  text-align: center;
+  font-size: 25px;
+}
+
+.maintitle {
+  font-size: 40px;
+  margin-bottom: 0px;
 }
 
 h3 {
     text-decoration: underline;
 }
 
-
-div.pg {
-    height: 300px;
-}
-div.btns {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+h4 {
+  text-align: center;
+  font-size: 19px;
+  margin-bottom: 75px;
+  margin-top: 10px;
 }
 
 button {
@@ -63,4 +104,9 @@ button span {
   button:hover span:after {
     opacity: 1;
     right: 0;
+  }
+
+  button:active {
+    background-color: #01afe9;
+    transition: 0.1s;
   }
